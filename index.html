@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موسوعة لغات البرمجة التفاعلية</title>
+    <!-- مكتبة الأيقونات والخطوط -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+         *{ box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: #0b0f19; color: #f8fafc; min-height: 100vh; }
+        .navbar {
+            background-color: #1e293b; padding: 15px 30px; display: flex;
+            justify-content: space-between; align-items: center; border-bottom: 2px solid #334155;
+        }
+        .nav-brand { font-size: 20px; font-weight: 900; color: #38bdf8; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-btn {
+            background-color: transparent; color: #94a3b8; border: 1px solid #334155;
+            padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;
+            text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .nav-btn:hover, .nav-btn.active { background-color: #0284c7; color: #ffffff; border-color: #38bdf8; }
+        .container { max-width: 450px; margin: 50px auto; padding: 0 20px; }
+        .auth-card {
+            background-color: #1e293b; border: 2px solid #334155; border-radius: 16px;
+            padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .auth-card h2 { text-align: center; color: #38bdf8; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #cbd5e1; }
+        .form-group input {
+            width: 100%; padding: 12px; border-radius: 8px; background: #0f172a;
+            border: 1px solid #334155; color: #fff; font-size: 14px; outline: none;
+        }
+        .form-group input:focus { border-color: #38bdf8; }
+        .submit-btn {
+            width: 100%; background-color: #0284c7; color: #fff; border: none;
+            padding: 12px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;
+        }
+        .submit-btn:hover { background-color: #0369a1; }
+        .switch-text { text-align: center; margin-top: 15px; font-size: 14px; color: #94a3b8; }
+        .switch-text a { color: #38bdf8; text-decoration: none; font-weight: bold; }
+        .switch-text a:hover { text-decoration: underline; }
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .main-header {
+            background-color: #1e293b;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 2px solid #334155;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #38bdf8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .main-header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #f1f5f9;
+        }
+
+        .langs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .lang-card {
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .lang-card:hover {
+            transform: translateY(-6px);
+            border-color: #38bdf8;
+            background-color: #263548;
+        }
+
+        .lang-card i {
+            font-size: 52px;
+            margin-bottom: 15px;
+        }
+
+        .lang-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .lang-card p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .back-btn {
+            background-color: #334155;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background-color: #475569;
+        }
+
+        .details-box {
+            background-color: #1e293b;
+            border: 2px solid #334155;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .details-box h2 {
+            color: #38bdf8;
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .lang-abbr {
+            display: inline-block;
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #334155;
+            margin-bottom: 15px;
+        }
+
+        .details-box > p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        /* تنسيق الأزرار التفاعلية لتوليد الأكواد */
+        .interactive-code-section {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .interactive-code-section h4 {
+            color: #38bdf8;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .task-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .task-btn {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid #475569;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .task-btn:hover, .task-btn.active {
+            background-color: #0284c7;
+            border-color: #38bdf8;
+            color: #fff;
+        }
+
+        .code-output-box {
+            background-color: #1e1e2e;
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+            direction: ltr;
+            text-align: left;
+            border: 1px solid #334155;
+        }
+
+        .code-output-box pre {
+            color: #34d399;
+            font-family: monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #334155;
+            color: #fff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #475569;
+        }
+
+        .terms-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .terms-table th, .terms-table td {
+            border: 1px solid #334155;
+            padding: 14px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .terms-table th {
+            background-color: #0f172a;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .terms-table td {
+            color: #e2e8f0;
+        }
+        footer p {
+    background-color: rgb(46, 48, 61);
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+        
+    </style>
+</head>
+<body>
+<nav class="navbar">
+        <div class="nav-brand"><i class="fa-solid fa-code"></i> موسوعة البرمجة</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> الرئيسية</a>
+            <a href="login.html" class="nav-btn active"><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</a>
+            <a href="register.html" class="nav-btn"><i class="fa-solid fa-user-plus"></i> إنشاء حساب</a>
+        </div>
+    </nav>
+    <!-- الهيدر العلوي -->
+    <header class="main-header">
+        <div class="logo">
+            <i class="fa-solid fa-code"></i>
+            <span>موسوعة لغات البرمجة التفاعلية</span>
+        </div>
+        <p>اختر ما تريد تنفيذه برمجياً، واعرف الكود الصحيح فوراً!</p>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container">
+        
+        <!-- شبكة الـ 8 لغات -->
+        <section id="languages-grid-section">
+            <h2>اختر لغة البرمجة التي تريد تصفحها (8 لغات):</h2>
+            <div class="langs-grid">
+                
+                <div class="lang-card" onclick="openLanguage('html')">
+                    <i class="fa-brands fa-html5" style="color: #e34f26;"></i>
+                    <h3>HTML</h3>
+                    <p>هيكل وبناء صفحات الإنترنت</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('css')">
+                    <i class="fa-brands fa-css3-alt" style="color: #2965f1;"></i>
+                    <h3>CSS</h3>
+                    <p>تنسيق المظهر والألوان</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('js')">
+                    <i class="fa-brands fa-js" style="color: #f7df1e;"></i>
+                    <h3>JavaScript</h3>
+                    <p>التفاعل والحركات</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('python')">
+                    <i class="fa-brands fa-python" style="color: #306998;"></i>
+                    <h3>Python</h3>
+                    <p>الذكاء الاصطناعي والتطبيقات</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('cpp')">
+                    <i class="fa-solid fa-copyright" style="color: #00599c;"></i>
+                    <h3>C++</h3>
+                    <p>برمجة الأنظمة والألعاب</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('java')">
+                    <i class="fa-brands fa-java" style="color: #f89820;"></i>
+                    <h3>Java</h3>
+                    <p>تطوير تطبيقات الأندرويد</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('php')">
+                    <i class="fa-brands fa-php" style="color: #777bb3;"></i>
+                    <h3>PHP</h3>
+                    <p>برمجة وتطوير السيرفرات</p>
+                </div>
+
+                <div class="lang-card" onclick="openLanguage('sql')">
+                    <i class="fa-solid fa-database" style="color: #e38c00;"></i>
+                    <h3>SQL</h3>
+                    <p>إدارة وقواعد البيانات</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- قسم تفاصيل اللغة -->
+        <section id="language-details-section" class="hidden">
+            <button class="back-btn" onclick="goBackToHome()">
+                <i class="fa-solid fa-arrow-right"></i> العودة لقائمة اللغات
+            </button>
+            <div id="language-content-box"></div>
+        </section>
+     
+
+    </main>
+   <footer>
+        <p>2026 we school|all rights reserved</p>
+    </footer>
+    <script>
+        const programmingLanguages = {
+            html: {
+                title: "لغة الـ HTML",
+                abbr: "الاختصار: HyperText Markup Language",
+                description: "لغة ترميز النصوص التشعبية المسؤولة عن بناء الهيكل الأساسي لأي موقع إلكتروني.",
+                tasks: [
+                    { name: "إنشاء عنوان رئيسي", code: "<h1>مرحباً بك في موقعي</h1>" },
+                    { name: "إنشاء فقرة نصية", code: "<p>هذه فقرة نصية تعليمية.</p>" },
+                    { name: "إدراج صورة", code: '<img src="image.jpg" alt="صورة توضيحية">' },
+                    { name: "إنشاء رابط تشعبي", code: '<a href="https://google.com">اضغط هنا لزيارة الموقع</a>' }
+                ],
+                terms: [
+                    { term: "Tag (الوسم)", meaning: "العنصر الأساسي في الكود ويُكتب بين أقواس حادة مثل <p>." },
+                    { term: "Element (العنصر)", meaning: "يشمل الوسم البادئ والمحتوى والوسم الخاتم." },
+                    { term: "Attribute (الخاصية)", meaning: "معلومات إضافية توضع داخل الوسم مثل class أو id أو src." },
+                    { term: "Root (الجذر <html>)", meaning: "الوسم الأب الأساسي الذي يحيط بكود الصفحة كاملاً." },
+                    { term: "Head (<head>)", meaning: "قسم مخفي يحتوي على بيانات الموقع وعنوانه." },
+                    { term: "Body (<body>)", meaning: "القسم الذي يحتوي على العناصر المرئية للمستخدم." }
+                ]
+            },
+            css: {
+                title: "لغة الـ CSS",
+                abbr: "الاختصار: Cascading Style Sheets",
+                description: "لغة تنسيق ومظهر تستخدم لتصميم صفحات الويب وتحديد الألوان والخطوط.",
+                tasks: [
+                    { name: "تغيير لون خلفية الموقع", code: "body {\n    background-color: #0f172a;\n}" },
+                    { name: "تغيير لون وحجم النص", code: "h1 {\n    color: #38bdf8;\n    font-size: 24px;\n}" },
+                    { name: "تصميم زر ملون", code: ".btn {\n    background-color: #0284c7;\n    color: white;\n    padding: 10px 20px;\n}" },
+                    { name: "جعل الزاوية دائرية", code: ".box {\n    border-radius: 12px;\n}" }
+                ],
+                terms: [
+                    { term: "Selector (المحدد)", meaning: "تحديد العنصر المستهدف للتعديل (مثل p أو .class)." },
+                    { term: "Property (الخاصية)", meaning: "السمة المراد تغييرها مثل color أو background." },
+                    { term: "Value (القيمة)", meaning: "التعديل الفعلي مثل red أو 20px." },
+                    { term: "Margin (الهامش الخارجي)", meaning: "المسافة الفارغة خارج حدود العنصر." },
+                    { term: "Padding (الحشو الداخلي)", meaning: "المسافة داخل العنصر بين محتواه وإطاره." },
+                    { term: "Flexbox", meaning: "نظام الترتيب المرن للعناصر في صف أو عمود." }
+                ]
+            },
+            js: {
+                title: "لغة الـ JavaScript",
+                abbr: "الاختصار: JavaScript Programming Language",
+                description: "اللغة التي تضخ الحياة والتفاعل الحركي في صفحات الويب.",
+                tasks: [
+                    { name: "إنشاء متغير لتخزين اسم", code: 'let userName = "جومانا";' },
+                    { name: "طباعة رسالة في الكونسول", code: 'console.log("مرحباً بك!");' },
+                    { name: "إظهار نافذة تنبيه للمستخدم", code: 'alert("تم حفظ البيانات بنجاح!");' },
+                    { name: "إنشاء دالة (Function)", code: 'function sayHello() {\n    alert("أهلاً بك!");\n}' }
+                ],
+                terms: [
+                    { term: "Variable (المتغير)", meaning: "حاوية لتخزين البيانات واستخدامها." },
+                    { term: "Function (الدالة)", meaning: "كتلة كود تؤدي مهمة محددة عند استدعائها." },
+                    { term: "Array (المصفوفة)", meaning: "قائمة منظمة تحتوي على عدة عناصر أو قيم." },
+                    { term: "Object (الكائن)", meaning: "مجموعة بيانات وخصائص تصف شيئاً واحداً." },
+                    { term: "Condition (If / Else)", meaning: "أداة لاتخاذ القرارات البرمجية بناءً على الشروط." }
+                ]
+            },
+            python: {
+                title: "لغة الـ Python",
+                abbr: "الاختصار: Python Programming Language",
+                description: "من أسهل لغات البرمجة وأكثرها قوة، وتستخدم في الذكاء الاصطناعي وبناء التطبيقات.",
+                tasks: [
+                    { name: "طباعة نص على الشاشة", code: 'print("مرحباً بكم في بايثون!")' },
+                    { name: "إنشاء متغير رقمي وحسابه", code: 'x = 10\ny = 20\nprint(x + y)' },
+                    { name: "إنشاء دالة بسيطة", code: 'def greet():\n    print("أهلاً بك يا صديقي")' },
+                    { name: "حلقة تكرار (Loop)", code: 'for i in range(5):\n    print(i)' }
+                ],
+                terms: [
+                    { term: "Print (الطباعة)", meaning: "أمر إظهار النصوص والنتائج على الشاشة." },
+                    { term: "List (القائمة)", meaning: "هيكل لتخزين مجموعة بيانات قابلة للتعديل." },
+                    { term: "Dictionary (القاموس)", meaning: "تخزين البيانات بنظام المفتاح والقيمة." },
+                    { term: "Def (تعريف دالة)", meaning: "كلمة مفتاحية لإنشاء دالة جديدة في بايثون." }
+                ]
+            },
+            cpp: {
+                title: "لغة الـ C++",
+                abbr: "الاختصار: C plus plus",
+                description: "لغة سريعة جداً وقوية تستخدم في برمجة الأنظمة والألعاب الكبرى.",
+                tasks: [
+                    { name: "طباعة جملة على الشاشة", code: 'cout << "مرحباً بالعالم!";' },
+                    { name: "استقبال مدخلات من المستخدم", code: 'int age;\ncin >> age;' },
+                    { name: "تعريف متغير رقمي", code: 'int score = 100;' }
+                ],
+                terms: [
+                    { term: "cout", meaning: "أمر طباعة وإظهار النصوص على الشاشة." },
+                    { term: "cin", meaning: "أمر استقبال البيانات التي يكتبها المستخدم." },
+                    { term: "int", meaning: "نوع بيانات مخصص لتخزين الأرقام الصحيحة." },
+                    { term: "Pointer", meaning: "متغير يحفظ عنوان الذاكرة الخاص بمتغير آخر." }
+                ]
+            },
+            java: {
+                title: "لغة الـ Java",
+                abbr: "الاختصار: Java Programming Language",
+                description: "لغة شهيرة وعريقة تستخدم في تطبيقات الأندرويد والأنظمة الكبيرة.",
+                tasks: [
+                    { name: "طباعة نص في جافا", code: 'System.out.println("أهلاً بك في جافا!");' },
+                    { name: "تعريف متغير نصي", code: 'String name = "جومانا";' }
+                ],
+                terms: [
+                    { term: "System.out.println", meaning: "أمر الطباعة وعرض النتائج." },
+                    { term: "Class", meaning: "الأساس الذي تُبنى عليه جميع الأكواد في جافا." },
+                    { term: "String", meaning: "نوع بيانات مخصص لحفظ الجمل النصية." }
+                ]
+            },
+            php: {
+                title: "لغة الـ PHP",
+                abbr: "الاختصار: Hypertext Preprocessor",
+                description: "لغة برمجة خلفية (Backend) تستخدم لمعالجة بيانات المواقع والسيرفرات.",
+                tasks: [
+                    { name: "طباعة نص في بي إتش بي", code: '<?php echo "مرحباً بك في PHP!"; ?>' },
+                    { name: "تعريف متغير وطباعته", code: '<?php\n$name = "عالم البرمجة";\necho $name;\n?>' }
+                ],
+                terms: [
+                    { term: "Echo", meaning: "أمر عرض وطباعة النصوص على الشاشة." },
+                    { term: "$ (علامة الدولار)", meaning: "تستخدم لبدء وتعرّف أي متغير في لغة بي إتش بي." }
+                ]
+            },
+            sql: {
+                title: "لغة الـ SQL",
+                abbr: "الاختصار: Structured Query Language",
+                description: "لغة مخصصة للتعامل مع قواعد البيانات، الاستعلام عنها، وحفظ البيانات.",
+                tasks: [
+                    { name: "استعراض كل البيانات من جدول", code: "SELECT * FROM users;" },
+                    { name: "إضافة بيانات جديدة لجدول", code: "INSERT INTO users (name) VALUES ('جومانا');" }
+                ],
+                terms: [
+                    { term: "SELECT", meaning: "أمر جلب واستعراض البيانات من قاعدة البيانات." },
+                    { term: "INSERT", meaning: "أمر إدخال سجل أو بيانات جديدة." },
+                    { term: "WHERE", meaning: "تحديد شرط معين للبحث أو الفلترة." }
+                ]
+            }
+        };
+
+        const gridSection = document.getElementById('languages-grid-section');
+        const detailsSection = document.getElementById('language-details-section');
+        const contentBox = document.getElementById('language-content-box');
+
+        let currentLangTerms = []; 
+
+        function openLanguage(langKey) {
+            const langData = programmingLanguages[langKey];
+            if (!langData) return;
+
+            currentLangTerms = langData.terms;
+
+            // توليد أزرار المهام التفاعلية للكود
+            let taskButtonsHTML = langData.tasks.map((task, index) => `
+                <button class="task-btn ${index === 0 ? 'active' : ''}" onclick="showCodeTask('${langKey}', ${index}, this)">${task.name}</button>
+            `).join('');
+
+            let initialCode = langData.tasks[0].code;
+
+            contentBox.innerHTML = `
+                <div class="details-box">
+                    <h2>${langData.title}</h2>
+                    <span class="lang-abbr">${langData.abbr}</span>
+                    <p>${langData.description}</p>
+                    
+                    <!-- قسم طريقة كتابة الكود التفاعلي -->
+                    <div class="interactive-code-section">
+                        <h4><i class="fa-solid fa-laptop-code"></i> ماذا تريد أن تفعل؟ (اضغط لاختبار الكود):</h4>
+                        <div class="task-buttons">
+                            ${taskButtonsHTML}
+                        </div>
+                        <div class="code-output-box">
+                            <button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> نسخ الكود</button>
+                            <pre><code id="active-code-display">${initialCode}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- صندوق البحث الفوري -->
+                    <div style="margin: 20px 0;">
+                        <input type="text" id="term-search-input" placeholder="ابحث عن أي مصطلح هنا..." onkeyup="filterTerms()" style="width: 100%; padding: 12px; border-radius: 8px; background: #0f172a; border: 1px solid #38bdf8; color: #fff; font-size: 14px; outline: none;">
+                    </div>
+
+                    <h3><i class="fa-solid fa-book-open"></i> قاموس المصطلحات والشرح المبسط:</h3>
+                    <div style="max-height: 350px; overflow-y: auto; margin-top: 10px;">
+                        <table class="terms-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 35%;">المصطلح البرمجي</th>
+                                    <th>الشرح المبسط بالعربية</th>
+                                </tr>
+                            </thead>
+                            <tbody id="terms-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            renderTableRows(currentLangTerms);
+
+            gridSection.classList.add('hidden');
+            detailsSection.classList.remove('hidden');
+        }
+
+        // دالة تبديل الأكواد عند النقر على الأزرار التفاعلية
+        function showCodeTask(langKey, taskIndex, btnElement) {
+            const langData = programmingLanguages[langKey];
+            const codeBox = document.getElementById('active-code-display');
+            codeBox.innerText = langData.tasks[taskIndex].code;
+
+            // تغيير الزر النشط
+            const buttons = btnElement.parentElement.querySelectorAll('.task-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        // دالة نسخ الكود
+        function copyCode(button) {
+            const codeText = button.parentElement.querySelector('code').innerText;
+            navigator.clipboard.writeText(codeText);
+            button.innerHTML = '<i class="fa-solid fa-check"></i> تم النسخ!';
+            setTimeout(() => {
+                button.innerHTML = '<i class="fa-solid fa-copy"></i> نسخ الكود';
+            }, 2000);
+        }
+
+        function renderTableRows(termsArray) {
+            const tbody = document.getElementById('terms-tbody');
+            if (!tbody) return;
+
+            if (termsArray.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="2" style="text-align: center; color: #94a3b8;">لا توجد نتائج مطابقة للبحث</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = termsArray.map(item => `
+                <tr>
+                    <td><strong>${item.term}</strong></td>
+                    <td>${item.meaning}</td>
+                </tr>
+            `).join('');
+        }
+
+        function filterTerms() {
+            const query = document.getElementById('term-search-input').value.toLowerCase();
+            const filtered = currentLangTerms.filter(item => 
+                item.term.toLowerCase().includes(query) || item.meaning.toLowerCase().includes(query)
+            );
+            renderTableRows(filtered);
+        }
+
+        function goBackToHome() {
+            detailsSection.classList.add('hidden');
+            gridSection.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

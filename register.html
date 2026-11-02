@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+        body { background-color: #0b0f19; color: #f8fafc; min-height: 100vh; }
+        .navbar {
+            background-color: #1e293b; padding: 15px 30px; display: flex;
+            justify-content: space-between; align-items: center; border-bottom: 2px solid #334155;
+        }
+        .nav-brand { font-size: 20px; font-weight: 900; color: #38bdf8; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-btn {
+            background-color: transparent; color: #94a3b8; border: 1px solid #334155;
+            padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px;
+            text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .nav-btn:hover, .nav-btn.active { background-color: #0284c7; color: #ffffff; border-color: #38bdf8; }
+        .container { max-width: 450px; margin: 50px auto; padding: 0 20px; }
+        .auth-card {
+            background-color: #1e293b; border: 2px solid #334155; border-radius: 16px;
+            padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .auth-card h2 { text-align: center; color: #38bdf8; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #cbd5e1; }
+        .form-group input {
+            width: 100%; padding: 12px; border-radius: 8px; background: #0f172a;
+            border: 1px solid #334155; color: #fff; font-size: 14px; outline: none;
+        }
+        .form-group input:focus { border-color: #38bdf8; }
+        .submit-btn {
+            width: 100%; background-color: #0284c7; color: #fff; border: none;
+            padding: 12px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;
+        }
+        .submit-btn:hover { background-color: #0369a1; }
+        .switch-text { text-align: center; margin-top: 15px; font-size: 14px; color: #94a3b8; }
+        .switch-text a { color: #38bdf8; text-decoration: none; font-weight: bold; }
+        .switch-text a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand"><i class="fa-solid fa-code"></i> موسوعة البرمجة</div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn"><i class="fa-solid fa-house"></i> الرئيسية</a>
+            <a href="login.html" class="nav-btn"><i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول</a>
+            <a href="register.html" class="nav-btn active"><i class="fa-solid fa-user-plus"></i> إنشاء حساب</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="auth-card">
+            <h2>إنشاء حساب جديد</h2>
+            <form onsubmit="event.preventDefault(); alert('تم إنشاء حسابك بنجاح!');">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" placeholder="أدخل كلمة مرور قوية" required>
+                </div>
+                <button type="submit" class="submit-btn">تسجيل الحساب</button>
+            </form>
+            <p class="switch-text">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
